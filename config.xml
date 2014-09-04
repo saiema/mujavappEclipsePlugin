@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<header xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="file:config.xsd" date="2014-03-06">
+    <value  key="jUnitPath"
+            value="C:\Program Files (x86)\eclipse\plugins\org.junit_4.11.0.v201303080030\junit.jar"
+    /><value key="hamcrestPath" value="C:\Program Files (x86)\eclipse\plugins\org.hamcrest.core_1.1.0.v20090501071000.jar"></value>
+</header>
