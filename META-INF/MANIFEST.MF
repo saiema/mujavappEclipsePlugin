@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: MuJavapp-plugin
 Bundle-SymbolicName: MuJavapp;singleton:=true
-Bundle-Version: 1.0.2.201403
+Bundle-Version: 1.0.4.201506
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.ui.workbench,
  org.eclipse.jdt.launching;bundle-version="3.7.0",

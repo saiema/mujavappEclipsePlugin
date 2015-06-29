@@ -3,8 +3,6 @@ package plugin.ui;
 
 import java.io.File;
 
-import javax.swing.JFileChooser;
-
 import plugin.MuJavaPlugin;
 import plugin.listeners.main.ClassSelectButtonListener;
 import plugin.listeners.main.DirSelectButtonListener;
@@ -21,6 +19,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
@@ -52,16 +51,14 @@ public class MainTabUI {
 			}
 			
 			private File selectDirectory() {
-				JFileChooser fc = new JFileChooser();
-				fc.setMultiSelectionEnabled(false);
-				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				fc.setDialogTitle("Select output folder");
-				int ret = fc.showOpenDialog(null);
-				if (ret == JFileChooser.APPROVE_OPTION) {
-					File file = fc.getSelectedFile();
-					return file;
+				DirectoryDialog fd = new DirectoryDialog(MuJavaPlugin.getActiveWorkbenchShell());
+				fd.setText("Select output folder");
+				String outputDir = fd.open();
+				File file = null;
+				if (outputDir != null) {
+					file = new File(outputDir);
 				}
-				return null;
+				return file;
 			}
 			
 		};

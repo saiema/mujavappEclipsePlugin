@@ -64,27 +64,20 @@ public class MuJavaLauncher extends AbstractJavaLaunchConfigurationDelegate {
 				tests = ValueAdapter.iJavaElementListToString(params.getTests());
 			}
 			
-//			IPath configPath;
-//			String configFolderFullPath;
-//			try {
-//				configFolderFullPath = FileLocator.getBundleFile(muJavaBundle).getParent().toString();
-//				configPath = new Path(configFolderFullPath);
-//				console.write("Config folder : " + configPath.addTrailingSeparator().toOSString() + "\n");
-//				console.write("Config file path : " + configPath.addTrailingSeparator().toOSString() + "config.xml" + "\n");
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			
-			
 			String hamcrestLocation = MuJavaPlugin.getHamcrestLocation().toOSString();
 			String jUnitLocation = MuJavaPlugin.getjUnitLocation().toOSString();
+			String guavaLocation = MuJavaPlugin.getGuavaLocation().toOSString();
+			String javassistLocation = MuJavaPlugin.getJavassistLocation().toOSString();
+			String reflectionsLocation = MuJavaPlugin.getReflectionsLocation().toOSString();
 			
 			
 			console.write("MuJava++\n================================================================================================\n");
 			console.write("Core version : " + mujavaCoreVersion + " | Plugin version : " + pluginVersion + '\n');
 			console.write("jUnit location : " + jUnitLocation + '\n');
 			console.write("hamcrest location : " + hamcrestLocation + '\n');
+			console.write("guava location : " + guavaLocation + '\n');
+			console.write("javassist location : " + javassistLocation + '\n');
+			console.write("reflections location : " + reflectionsLocation + '\n');
 			console.write("Root project : " + root + '\n');
 			console.write("Selected class (class to mutate) : " + clazz + '\n');
 			console.write("Source directory : " + srcDir + '\n');
@@ -116,9 +109,9 @@ public class MuJavaLauncher extends AbstractJavaLaunchConfigurationDelegate {
 			String binPath = rootDir+binDir;
 			String[] classpath;
 			if (testDir.isEmpty()) {
-				classpath = new String[] {mujavaPath!=null?adjustMuJavaPath(mujavaPath).toOSString():"", hamcrestLocation, jUnitLocation, rootDir, srcPath, binPath};
+				classpath = new String[] {mujavaPath!=null?adjustPath(mujavaPath).toOSString():"", hamcrestLocation, jUnitLocation, guavaLocation, javassistLocation, reflectionsLocation, rootDir, srcPath, binPath};
 			} else {
-				classpath = new String[] {mujavaPath!=null?adjustMuJavaPath(mujavaPath).toOSString():"", hamcrestLocation, jUnitLocation, rootDir, testDir, srcPath, binPath};
+				classpath = new String[] {mujavaPath!=null?adjustPath(mujavaPath).toOSString():"", hamcrestLocation, jUnitLocation, guavaLocation, javassistLocation, reflectionsLocation, rootDir, testDir, srcPath, binPath};
 			}
 			
 			VMRunnerConfiguration runConfig = new VMRunnerConfiguration(Console.class.getName(), classpath);
@@ -133,7 +126,7 @@ public class MuJavaLauncher extends AbstractJavaLaunchConfigurationDelegate {
 		
 	}
 	
-	private IPath adjustMuJavaPath(IPath original) {
+	private IPath adjustPath(IPath original) {
 		if (original.getFileExtension() == null) {
 			return original.addTrailingSeparator();
 		}

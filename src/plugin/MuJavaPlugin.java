@@ -30,7 +30,7 @@ public class MuJavaPlugin extends AbstractUIPlugin {
 	  public static final String LAUNCH_CONFIG_TYPE = "MuJava++.launchType";
 	  private static Parameters params;
 	  private static ConfigurationManager configManager;
-	  public static final MutatorsInfo mi = MutatorsInfo.newInstance();
+	  public static final MutatorsInfo mi = MutatorsInfo.getInstance();
 	  public static MainController mc;
 	  public static MethodsAndOpsController moc;
 	  public static TestsController tc;
@@ -189,6 +189,56 @@ public class MuJavaPlugin extends AbstractUIPlugin {
 		  IPath hamcrestPath = new Path(configReader.getValue("hamcrestPath"));
 		  return hamcrestPath;
 	  }
-	
+	  
+	  public static IPath getGuavaLocation() {
+		  Bundle muJavaBundle = Platform.getBundle(PLUGIN_ID);
+		  IPath configPath;
+		  String configFolderFullPath;
+		  try {
+			  configFolderFullPath = FileLocator.getBundleFile(muJavaBundle).getParent().toString();
+			  configPath = new Path(configFolderFullPath);
+			  configReader = ConfigReader.newInstance(configPath.addTrailingSeparator().toOSString()+"config.xml");
+		  } catch (IOException e) {
+			  // TODO Auto-generated catch block
+			  e.printStackTrace();
+		  }
+		  
+		  IPath guavaPath = new Path(configReader.getValue("guava"));
+		  return guavaPath;
+	  }
+	  
+	  public static IPath getJavassistLocation() {
+		  Bundle muJavaBundle = Platform.getBundle(PLUGIN_ID);
+		  IPath configPath;
+		  String configFolderFullPath;
+		  try {
+			  configFolderFullPath = FileLocator.getBundleFile(muJavaBundle).getParent().toString();
+			  configPath = new Path(configFolderFullPath);
+			  configReader = ConfigReader.newInstance(configPath.addTrailingSeparator().toOSString()+"config.xml");
+		  } catch (IOException e) {
+			  // TODO Auto-generated catch block
+			  e.printStackTrace();
+		  }
+		  
+		  IPath javassistPath = new Path(configReader.getValue("javassist"));
+		  return javassistPath;
+	  }
+	  
+	  public static IPath getReflectionsLocation() {
+		  Bundle muJavaBundle = Platform.getBundle(PLUGIN_ID);
+		  IPath configPath;
+		  String configFolderFullPath;
+		  try {
+			  configFolderFullPath = FileLocator.getBundleFile(muJavaBundle).getParent().toString();
+			  configPath = new Path(configFolderFullPath);
+			  configReader = ConfigReader.newInstance(configPath.addTrailingSeparator().toOSString()+"config.xml");
+		  } catch (IOException e) {
+			  // TODO Auto-generated catch block
+			  e.printStackTrace();
+		  }
+		  
+		  IPath reflectionsPath = new Path(configReader.getValue("reflections"));
+		  return reflectionsPath;
+	  }
 
 }

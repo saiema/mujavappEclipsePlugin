@@ -14,7 +14,7 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IType;
 
 public class Parameters {
-	private MutatorsInfo mi = MutatorsInfo.newInstance();
+	private MutatorsInfo mi = MutatorsInfo.getInstance();
 	
 	private File output;
 	private IProject root;
@@ -305,6 +305,8 @@ public class Parameters {
 		if (this.allowFieldMutations) {
 			stringParams.add("-F");
 		}
+		
+		stringParams.add("-A"); //force ignoring mutGenLimit annotations
 		
 		return 	listToString(stringParams);
 	}
